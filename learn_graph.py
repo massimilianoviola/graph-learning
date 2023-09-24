@@ -9,7 +9,7 @@ import utils
 import time
 import numpy as np
 from scipy import spatial
-from sklearn.covariance import graph_lasso
+from sklearn.covariance import graphical_lasso
 from pyunlocbox import functions, solvers
 
 
@@ -296,12 +296,12 @@ def glasso(X, alpha=1, w0=None, maxit=1000, rtol=1e-5, retall=False,
         Maximum number of iterations.
     rtol : float, optional
         Stopping criterion. If the dual gap goes below this value, iterations
-        are stopped. See :func:`sklearn.covariance.graph_lasso`.
+        are stopped. See :func:`sklearn.covariance.graphical_lasso`.
     retall : boolean
         Return solution and problem details.
     verbosity : {'NONE', 'ALL'}, optional
         Level of verbosity of the solver.
-        See :func:`sklearn.covariance.graph_lasso`/
+        See :func:`sklearn.covariance.graphical_lasso`/
 
     Returns
     -------
@@ -313,7 +313,7 @@ def glasso(X, alpha=1, w0=None, maxit=1000, rtol=1e-5, retall=False,
 
     Notes
     -----
-    This function uses the solver :func:`sklearn.covariance.graph_lasso`.
+    This function uses the solver :func:`sklearn.covariance.graphical_lasso`.
 
     Examples
     --------
@@ -330,7 +330,7 @@ def glasso(X, alpha=1, w0=None, maxit=1000, rtol=1e-5, retall=False,
 
     # Solve problem
     tstart = time.time()
-    res = graph_lasso(emp_cov=S,
+    res = graphical_lasso(emp_cov=S,
                       alpha=alpha,
                       cov_init=w0,
                       mode='cd',
@@ -342,7 +342,7 @@ def glasso(X, alpha=1, w0=None, maxit=1000, rtol=1e-5, retall=False,
 
     problem = {'sol':       res[1],
                'dual_sol':  res[0],
-               'solver':    'sklearn.covariance.graph_lasso',
+               'solver':    'sklearn.covariance.graphical_lasso',
                'crit':      'dual_gap',
                'niter':     res[3],
                'time':      time.time() - tstart,
